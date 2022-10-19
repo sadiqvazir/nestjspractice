@@ -1,20 +1,15 @@
 import { Controller, Get, Param, Post, Query, UseGuards, Request } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
-import { AppService } from './app.service';
-import { AuthService } from './auth/auth.service';
-import { AllowAnonymous, Public } from './auth/decorator';
-import { JwtAuthGuard } from './auth/jwt-auth.guard';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService, private authService: AuthService) { }
-
-  @Public()
-  @Post('auth/login')
-  async login(@Request() req) {
-    // console.log(req);
-    return this.authService.login(req.body);
+  constructor() { 
   }
+
+  // @Public()
+  // @Post('login')
+  // async login(@Request() req) {
+  //   return this.authService.login(req.body);
+  // }
 
   // @Get(':id')
   // getHello(@Param('id') id): string {
@@ -22,23 +17,22 @@ export class AppController {
   // }
 
   // @UseGuards(JwtAuthGuard)
-  @Get('profile')
-  getProfile(@Request() req) {
-    console.log(req);
-    return req.user;
-  }
+  // @Get('profile')
+  // getProfile(@Request() req) {
+  //   return req.user;
+  // }
 
 
-  @Public()
-  @Get('findAll')
-  findAll() {
-    return [];
-  }
+  // @Public()
+  // @Get('findAll')
+  // findAll() {
+  //   return this.appService.getUsers();
+  // }
 
-  @AllowAnonymous()
-  @Get('getAll')
-  getAll() {
-    return [{}];
-  }
+  // @AllowAnonymous()
+  // @Post('save')
+  // save(@Request() req) {
+  //   return this.appService.createUser(req.body);
+  // }
 
 }
